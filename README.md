@@ -1,12 +1,6 @@
 # CS410 Course Project: Intelligent Browsing
 
-Tim Crosling (tgc3)
-
-Avi Nayak (anayak5)
-
-Shrishti Sharma (srishti9)
-
-Deepthi Abraham (deepthi7)
+Tim Crosling (tgc3), Avi Nayak (anayak5), Shrishti Sharma (srishti9), Deepthi Abraham (deepthi7)
 
 Instructions:
 
@@ -22,3 +16,6 @@ Load the extender into Chrome by doing the following:
 
 (5) Navigate to the directory containing the project
 
+(6) Browse to any webpage and select the extension in the top right corner
+
+The extension will load
