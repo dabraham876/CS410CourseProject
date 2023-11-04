@@ -16,6 +16,7 @@ Load the extender into Chrome by doing the following:
 
 (5) Navigate to the directory containing the project
 
-(6) Browse to any webpage and select the extension in the top right corner
+(6) Browse to any webpage and toggle the side panel to the right of the plugin 
 
-The extension will load
+Select "Intelligent Browser Plugin" from the drop down box at the top of the side panel to load the extension
+
