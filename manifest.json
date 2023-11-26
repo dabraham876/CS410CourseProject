@@ -1,7 +1,6 @@
 {
   "name": "Intelligent Browser Plugin",
   "description": "CS410 Project - Intelligent Assistant",
-  	"host_permissions": ["<all_urls>"],
   "version": "0.1",
   "manifest_version": 3,
   "icons": {
@@ -19,17 +18,20 @@
 	"default_path": "popup.html",
     "openPanelOnActionClick": true
   },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
-  },
+  "permissions": [
+	"http://localhost:5000/"
+  ],
   "permissions" : [
 	"activeTab", 
 	"scripting",
 	"sidePanel",
 	"tabs"
   ],
+  "background": {
+	"service_worker": "background.js"
+  },
   "content_scripts" : [ {
-	  "matches" : ["<all_urls>"],
-	  "js" : ["main.js"]
+	  "js" : ["main.js"],
+	  "matches" : ["<all_urls>"]
   } ]
 }

@@ -1,10 +1,23 @@
 # CS410 Course Project: Intelligent Browsing
 
+Webpage Summarization Tool
+
 Tim Crosling (tgc3), Avi Nayak (anayak5), Shrishti Sharma (srishti9), Deepthi Abraham (deepthi7)
 
 Instructions:
 
-Load the extender into Chrome by doing the following:
+There are two steps to run the project
+
+Step 1: Run the Flask Python server:
+(a) Ensure you have the right python libraries:
+         pip install flask spacy numpy openai
+
+(b) Run the python Server:
+         python textAnalyticsServer.py
+
+(c) Note the Server localhost address and port (should be 127.0.0.1:5000)
+
+Step 2: Load the extender into Chrome:
 
 (1) Open Chrome Browser
 

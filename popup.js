@@ -1,65 +1,105 @@
-let mybutton = document.getElementById('clickButton');
+let myButton = document.getElementById('clickButton');
 let list = document.getElementById('textCaptured');
+let pageURL = document.getElementById('urlCaptured');
+
+let searchQuery = null;
+
+if (myButton == null)
+	list.innerHTML += "PROBLEMS";
+
+// Dispatch url to google cloud function that will execute NER on the 
+// text and return the top 5 entities
+// returns {Promise<any>} which is a list of the top 5 entities in the text 
+/*async function runQuery (url) {
+	const serverURL = 'https://cs410server-y4rorqzjqa-uc.a.run.app' // URL HERE
+	const data = {url : url}
+	
+	const response = await fetch (serverURL, {
+		method: 'POST',
+		mode: 'cors',
+		credentials: 'omit',
+		headers: {
+			'Access-Control-Allow-Origin' : '*',
+			'Content-Type' : 'application/json'
+		},
+		body : JSON.stringify(data)
+	});
+	return response.json();
+}
+*/
 
 // Handler to receive text from content script]
-chrome.runtime.onMessage.addListener ((request, sender, sendResponse) => {
-	//get text and remove { ... } code
-	list.innerHTML = "";
-
-	let invertedIndex = {};
-
+//chrome.runtime.onMessage.addListener ((request, sender, sendResponse) => {
+//	let url = request.url;
+//	list.innerHTML (url);
 	
+//	runQuery (url).then (res => {
+//		list.innerHTML += "RESPONDED";
+//	});
+	
+	//get text and remove { ... } code
+	//list.innerHTML = "";
+
+	//let invertedIndex = {};
 	//let text = (request.innerHTMLString).replace(/ *{[^)]*\}*/g, "");
-	let text = request.innerHTMLString.toLowerCase().replaceAll(/\n/g, " ");
+	//let text = request.innerHTMLString.toLowerCase().replaceAll(/\n/g, " ");
 
 	// lowercase and scrub punctuation
 	//text = text.toLowerCase().replaceAll( /[~`’!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g, " ")
-	
 	// remove stop words  
-	/*stopwords = [" for ", " a ", " of ", " the ", " and ", " to ", " in "];
-	for (word of stopwords) {
-		text = text.replaceAll(word, " ")
-	}*/
+	//stopwords = [" for ", " a ", " of ", " the ", " and ", " to ", " in "];
+	//for (word of stopwords) {
+	//	text = text.replaceAll(word, " ")
+	//}
 
 	// Display text in the popup
-	if (text == null || text.length == 0) {
+	//if (text == null || text.length == 0) {
 		// no text
-		list.innerHTML += 'No text found';
+	//	list.innerHTML += 'No text found';
+	//}
+	//else {
+	//	tokenized_Text = text.split(" ");
+	//	str = new Set (text.split (" "));
+	//	str = [... str].join(" ");
+		//list.innerHTML += str
+		
+	//	uniqueWords = str.split(" ");		
+		
+		//Create the inverted index
+	//	for (word of uniqueWords) {
+	//		if (word != "") {				
+	//			wordCount = text.split(" " + word + " ").length - 1;
+	//			
+	//			invertedIndex[word] = wordCount
+	//			
+				//print the unique words and count to the panel
+	//			list.innerHTML += word + " " + invertedIndex[word] + "<br>";
+	//		}
+	//	}	
+	//	
+	//}
+	
+//	sendResponse({status : true});
+
+//})
+
+myButton.addEventListener ('click', async () => {
+	list.innerHTML = "<br>Processing ... please wait a few seconds ...";
+
+	let [tab] =await chrome.tabs.query({active:true, currentWindow: true});
+	chrome.runtime.sendMessage({action: 'invoke_python_function', data:{key: 'value' , "url": tab.url} });
+});
+
+chrome.runtime.onMessage.addListener (function (request, sender, sendResponse) {
+	if (request.result) {
+		list.innerHTML = request.result;
 	}
 	else {
-		tokenized_Text = text.split(" ");
-		str = new Set (text.split (" "));
-		str = [... str].join(" ");
-		uniqueWords = str.split(" ");
-		//alert(uniqueWords);
-		
-		/*
-		EXPERIMENTAL - CREATE THE INVERTED INDEX
-		for (word of uniqueWords) {
-			var regExp = new RegExp (" " + word + " ");
-			wordCount = (text.match(regExp) || []).length;
-			
-			invertedIndex[word] = wordCount;
-		}
-		alert (invertedIndex["4th"]);*/
-		
-		//print the unique words to the panel
-		for (word of uniqueWords) {
-			list.innerHTML += word + "<br>";
-		}
-		
-		//unique_words = [... new Set(token)];
-		//list.innerHTML += unique_words;
-		
-		// display text
-		//list.innerHTML += text;
+		list.innerHTML = "No Results Found";
 	}
-	
-	
-	sendResponse({status : true});
+});
 
-})
-
+/*
 // Button's click event listener
 mybutton.addEventListener('click', async () => { 
 	// get the current active tab
@@ -67,38 +107,24 @@ mybutton.addEventListener('click', async () => {
 	
 	if(tab.url?.startsWith("chrome://")) return undefined;
 	
-	// Execute script to parse content on pageX
-	chrome.scripting.executeScript ({
-		target: {tabId : tab.id},
-		func: scrapetextFromPage,
-	});
-});
-
-// function to scrape text from page
-function scrapetextFromPage() {
-	const parser = new DOMParser();
-	let innerHTMLString = parser.parseFromString(document.body.innerHTML, "text/html")
-		.documentElement.textContent;
-
-	// send text to popup
-	chrome.runtime.sendMessage({innerHTMLString}, (response) => {console.log(response);});
-}
-
-// Tokenize into bag of words model
-var makeTokens = function (text) {
-	if (text === null) {return []; }
-	if (text.length === 0) {return []; }
+	//let url = tab.url;
+	//chrome.runtime.sendMessage({url}, (response) => {console.log(response);});
 	
-	return text.toLowerCase().replace(/[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-’]/g, '')
-		.split(' ').filter(function (token) { return token.length > 0; });
-}
+	pageURL.innerHTML = tab.url;
+	list.innerHTML += "A ";
+    fetch('/invoke_python_function')
+        .then(response => response.text())
+        .then(result => {
+            document.getElementById('result').innerText = result;
+			list.innerHTML +="B1 "
+			list.innerHTML += result
 
-var makeTfVector = function (countVector) {
-  let total = sum(countVector);
-  return countVector.map(
-    function (count) {
-      return total === 0 ? 0 : count / total;
-    }
-  );
-};
+        })
+		.catch((err) => {
+			console.log(err.message);
+			list.innerHTML +="B2 "
+		});	
+	list.innerHTML += "C ";
 
+});
+*/

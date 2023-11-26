@@ -4,42 +4,18 @@
     <title>PyScript Demo 1</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!--
-	<py-config>
-		[[runtimes]]
-		src = "runtime/pyodide.js"
-		name = "pyodide-0.21.3"
-		lang = "python"
-    </py-config>
-    <script defer src="runtime/pyscript.js"></script>
-	-->
     <link rel="icon" type="icons/png" href="/icon.png" />
     <link rel="stylesheet" href="popup.css" />
-    <link rel="stylesheet" href="runtime/pyscript.css" />
   </head>
   <body>
-    <h2 color="white">Intelligent Browser Assistant!</h2>
-	<button id='clickButton'>Index words</button>
+    <h2 color="white">Intelligent Browser Summarizer</h2>
+	<p>This Chrome Extension will summarize the top 5 key topics on any webpage for you!</p>
+	<button id='clickButton'>Get Page Summary Now!</button>
 	<div id='textCaptured'> </div>
+	<div id='urlCaptured' hidden> </div>
 
-<script src='popup.js'></script>
-    <h4 id="datetime"></h4>
+	<script src='popup.js'></script>
 
-<!-- Python code below is intentionally left-aligned to utilise full width  -->
-<!--
-<py-script>
-from js import document as popup  # DOM for this popup page
-from datetime import datetime
-
-# Use print to update the popup
-print("This is the current date and time in ISO8601 format, courtesy of Python and PyScript.<br><br>")
-
-# Update an element in the popup directly
-insert_content = popup.getElementById('datetime')
-insert_content.innerHTML = f"<i>{datetime.now().isoformat()}</i>"
-
-</py-script>
--->
   </body>
 </html>
 
