@@ -30,5 +30,5 @@ There are two steps to run the project
 
 (6) Browse to any webpage and toggle the side panel to the right of the plugin 
 
-Select "Intelligent Browser Plugin" from the drop down box at the top of the side panel to load the extension
-
+**Select "Intelligent Browser Plugin" from the drop down box at the top of the side panel to load the extension
+**
