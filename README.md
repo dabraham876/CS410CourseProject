@@ -14,6 +14,9 @@ There are two steps to run the project
 
 (b) Run the python Server:
          python textAnalyticsServer.py
+		 
+(c) The server will prompt you to enter the openAI private key (note - it usually asks for this twice)
+		Cut and paste the key from the first page of the pdf "CS410 Project Final Report.pdf"
 
 (c) Note the Server localhost address and port (should be 127.0.0.1:5000)
 
