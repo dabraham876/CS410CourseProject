@@ -13,7 +13,7 @@ There are two steps to run the project
          pip install flask spacy numpy openai
 
 (b) Run the python Server:
-         python textAnalyticsServer.py
+         python Server/textAnalyticsServer.py
 		 
 (c) The server will prompt you to enter the openAI private key (note - it usually asks for this twice)
 		Cut and paste the key from the first page of the pdf "CS410 Project Final Report.pdf"
