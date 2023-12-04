@@ -12,26 +12,32 @@ There are two steps to run the project
 (a) Ensure you have the right python libraries:
          pip install flask spacy numpy openai
 
-(b) Run the python Server:
+
+(b) Go to the ‘Server’ folder
+
+(c) Run the python Server:
          python Server/textAnalyticsServer.py
 		 
-(c) The server will prompt you to enter the openAI private key (note - it usually asks for this twice)
+(d) The server will prompt you to enter the openAI private key (note - it usually asks for this twice)
 		Cut and paste the key from the first page of the pdf "CS410 Project Final Report.pdf"
 
-(c) Note the Server localhost address and port (should be 127.0.0.1:5000)
+(e) Note the Server localhost address and port (should be 127.0.0.1:5000)
 
 **Step 2: Load the extender into Chrome:**
-(1) Open Chrome Browser
+(a) Open Chrome Browser
 
-(2) Enter chrome://extensions/ in the address bar
+(b) Enter chrome://extensions/ in the address bar
 
-(3) Toggle 'Developer Mode' to ON at the top right of the page
+(c) Toggle 'Developer Mode' to ON at the top right of the page
 
-(4) Click 'Load Unpacked'
+(d) Click 'Load Unpacked'
 
-(5) Navigate to the directory containing the project
+(e) Navigate to the directory containing the project and select the ‘ChromeExtension’ folder
 
-(6) Browse to any webpage and toggle the side panel to the right of the plugin 
+(f) Browse to any webpage and toggle the side panel to the right of the plugin 
 
-**Select "Intelligent Browser Plugin" from the drop down box at the top of the side panel to load the extension
-**
+**Select "Intelligent Browser Plugin" from the drop down box at the top of the side panel to load the extension**
+
+Once the extension has been loaded and the server is running, simply browse to any non-Chrome website (with a http address) and click the ‘Get Page Summary Now’ button
+
+The tool may take a few seconds for the server to run the analytics script, but will return with results (worst case within 10 seconds).
