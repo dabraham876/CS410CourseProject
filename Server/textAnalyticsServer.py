@@ -58,7 +58,7 @@ def analyze_content(request):
     top = np.flip(top, axis=0)
     
     #Limit the number of topics sent back to the client to a reasonable number
-    resultsLimit = 5
+    resultsLimit = 3
     
     #for debugging - list the go-forward topics
     print (top[:resultsLimit])
@@ -90,7 +90,6 @@ def analyze_content(request):
         results += "<h3>Topic " + str(i+1) + ". " + top[i][0] + "</h3>"
 
         #Add sentiment notes in blue
-        
         if ((sentiment.choices[0].message.content).find("neutral") != -1):
             sentimentState = 'Neutral'
             results += "<h4><font color=grey>(" + sentimentState + " sentiment on page)</font></h4>"
