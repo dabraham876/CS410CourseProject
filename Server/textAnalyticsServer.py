@@ -58,7 +58,7 @@ def analyze_content(request):
     top = np.flip(top, axis=0)
     
     #Limit the number of topics sent back to the client to a reasonable number
-    resultsLimit = 3
+    resultsLimit = 4
     
     #for debugging - list the go-forward topics
     print (top[:resultsLimit])
