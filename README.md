@@ -1,7 +1,7 @@
 # CS410 Course Project: Intelligent Browsing
 
-**Webpage Summarization Tool
-**
+Webpage Summarization Tool
+
 Tim Crosling (tgc3), Avi Nayak (anayak5), Shrishti Sharma (srishti9), Deepthi Abraham (deepthi7)
 
 **Instructions:**
